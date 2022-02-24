@@ -45,6 +45,9 @@ public class MoveUp : MonoBehaviour
                 Score.score = 0;
             }
 
+            // note: usually I would use AddForce on a dynamic rigidbody
+            // but velocity provides a more predictable/consistent movement
+            // in this particular use case
             rb.velocity = new Vector2(0, speed);
         }
 
