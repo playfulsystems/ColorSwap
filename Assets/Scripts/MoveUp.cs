@@ -7,7 +7,6 @@ public class MoveUp : MonoBehaviour
 {
     public GameObject[] challenges;
     public GameObject changer;
-
     float speed = 4f;
 
     Rigidbody2D rb;
@@ -15,9 +14,15 @@ public class MoveUp : MonoBehaviour
     float challengeEvery = 6f;
     float nextChallengeAt = 3f;
 
+    public GameObject scoreObject;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // this looks for the game object you specify in the scene
+        // you could also use GameObject.FindObjectWithTag or GameObject.FindObjectWithType
+        scoreObject = GameObject.Find("Score");
     }
 
 	void Update()
@@ -42,7 +47,7 @@ public class MoveUp : MonoBehaviour
             {
                 Time.timeScale = 1;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                Score.score = 0;
+                scoreObject.GetComponent<Score>().score = 0;
             }
 
             // note: usually I would use AddForce on a dynamic rigidbody
@@ -56,7 +61,7 @@ public class MoveUp : MonoBehaviour
         {
             nextChallengeAt += challengeEvery;
 
-            Score.score++;
+            scoreObject.GetComponent<Score>().score++;
 
             // create changer at next pos
             Instantiate(changer, new Vector2(0f, nextChallengeAt + 3f), Quaternion.identity);
