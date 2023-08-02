@@ -14,7 +14,7 @@ public class MoveUp : MonoBehaviour
     float challengeEvery = 6f;
     float nextChallengeAt = 3f;
 
-    public GameObject scoreObject;
+    GameObject scoreObject;
 
     void Start()
     {
